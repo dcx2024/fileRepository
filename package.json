@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "tailwindcss": "^4.1.18"
+  },
+  "scripts": {
+  "frontend": "cd frontend && npm run dev",
+  "backend": "cd Backend && npx knex migrate:latest && node server"
+}
+}
