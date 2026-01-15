@@ -10,3 +10,5 @@ Backend/node_modules/
 # Environment files
 Backend/.env
 .env
+
+Backend/public/
