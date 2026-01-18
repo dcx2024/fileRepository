@@ -39,7 +39,7 @@ const Explore = () => {
         {/* Navigation Breadcrumb - Emerald Cyber Style */}
         <Link to="/" className="flex items-center gap-2 text-emerald-500/50 hover:text-emerald-400 transition-all mb-8 text-[10px] font-black uppercase tracking-[0.2em] group">
           <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-          Return_to_Main_Interface
+          Back to Home
         </Link>
 
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
@@ -49,11 +49,11 @@ const Explore = () => {
             </div>
             <div>
               <h1 className="text-4xl font-black uppercase tracking-tighter italic">
-                Central<span className="text-emerald-500">_Archive</span>
+                Central<span className="text-emerald-500"> Archive</span>
               </h1>
               <p className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.3em] mt-2 flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                System_Status: Browsing_Full_Dataset
+                Result:All Files
               </p>
             </div>
           </div>
@@ -64,7 +64,7 @@ const Explore = () => {
              
              <input 
                className="w-full bg-[#0a0c10] border-2 border-white/5 rounded-2xl py-4 pl-12 pr-4 outline-none focus:border-emerald-500/40 text-gray-200 font-mono text-xs transition-all shadow-2xl relative z-10"
-               placeholder="QUERY_DATABASE: Filter by title, code..."
+               placeholder="Search by course code, title, or academic year..."
                value={searchTerm}
                onChange={(e) => {
                  setSearchTerm(e.target.value);
@@ -85,7 +85,7 @@ const Explore = () => {
             <div className="col-span-full py-32 flex flex-col items-center justify-center border-2 border-dashed border-white/5 rounded-3xl bg-white/[0.02]">
               <Terminal size={48} className="text-gray-800 mb-4" />
               <p className="text-xs font-black uppercase tracking-widest text-gray-600">
-                Error_404: No_Matching_Records_Found
+              No matching records
               </p>
             </div>
           )}
