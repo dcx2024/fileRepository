@@ -7,13 +7,14 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: {
+    connection: process.env.CONN_URL/*{
        host: process.env.HOST || 'localhost',
       user: process.env.DBUSER || 'postgres',
       password: process.env.DBPASSWORD || 'postgres',
       database: process.env.DBNAME || 'file_repo',
       port: process.env.DBPORT || 5432,
-    }
+      
+    }*/
   },
 
   staging: {
