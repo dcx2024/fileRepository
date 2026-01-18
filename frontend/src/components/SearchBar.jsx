@@ -26,7 +26,7 @@ const SearchBar = ({ limit = null, showViewMore = false }) => {
   const loadExams = async (query = "") => {
     setLoading(true);
     try {
-      let url = `http://localhost:3000/api/exam/fetchExams?search=${query}`;
+      let url = `https://filerepository.onrender.com/api/exam/fetchExams?search=${query}`;
       if (limit) url += `&limit=${limit}`;
 
       const response = await fetch(url);
