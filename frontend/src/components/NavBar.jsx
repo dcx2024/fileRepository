@@ -20,7 +20,7 @@ const NavBar = () => {
 
           {/* Center Links */}
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
-            <a href="#" className="hover:text-white transition-colors">Browse</a>
+            <a href="/explore" className="hover:text-white transition-colors">Browse</a>
             {/* Trigger Button */}
             <button 
               onClick={() => setIsModalOpen(true)}
