@@ -13,12 +13,19 @@ const Explore = () => {
   const loadAllExams = async (query = "") => {
     setLoading(true);
     try {
-      // Fetching all exams without a limit
       const res = await fetch(`https://filerepository.onrender.com/api/exam/fetchExams?search=${query}`);
       const data = await res.json();
-      setExams(data);
+      
+      // FIX: Check if data is actually an array before setting state
+      if (Array.isArray(data)) {
+        setExams(data);
+      } else {
+        console.error("API did not return an array:", data);
+        setExams([]); // Fallback to empty array to prevent crash
+      }
     } catch (error) {
       console.error("Fetch error:", error);
+      setExams([]); // Fallback on network failure
     } finally {
       setLoading(false);
     }
