@@ -61,7 +61,7 @@ const ContributeForm = ({ onClose, refreshExams }) => {
       
       <div className="bg-[#11141a] border border-white/5 w-full max-w-xl rounded-3xl p-8 relative max-h-[90vh] overflow-y-auto custom-scrollbar shadow-2xl shadow-emerald-500/10">
         
-        {/* Success Overlay - Switched to Emerald */}
+        {/* Success Overlay - Emerald Confirmation */}
         {status === 'success' && (
           <div className="absolute inset-0 bg-emerald-600 flex flex-col items-center justify-center z-30 animate-in fade-in zoom-in duration-300">
             <CheckCircle2 size={64} className="mb-4 text-white" />
@@ -69,14 +69,18 @@ const ContributeForm = ({ onClose, refreshExams }) => {
           </div>
         )}
 
+        {/* Modal Header */}
         <div className="flex justify-between items-center mb-8 sticky top-0 bg-[#11141a] py-2 z-20">
           <div>
             <h2 className="text-2xl font-black text-white uppercase tracking-tighter">Contribute to Archive</h2>
             <div className="h-1 w-12 bg-emerald-500 mt-1 rounded-full"></div>
           </div>
-          <button onClick={onClose} className="text-gray-500 hover:text-emerald-400 p-2 transition-colors"><X /></button>
+          <button onClick={onClose} className="text-gray-500 hover:text-emerald-400 p-2 transition-colors">
+            <X size={24} />
+          </button>
         </div>
 
+        {/* Form Body */}
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="group">
             <label className="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2 group-focus-within:text-emerald-500 transition-colors">Exam Title</label>
@@ -108,16 +112,21 @@ const ContributeForm = ({ onClose, refreshExams }) => {
 
           <div className="group">
             <label className="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2 group-focus-within:text-emerald-500 transition-colors">Semester</label>
-            <select 
-              name="semester" onChange={handleChange}
-              className="w-full bg-[#0a0c10] border border-white/5 rounded-2xl p-4 focus:outline-none focus:border-emerald-500/50 text-white font-mono text-sm appearance-none transition-all cursor-pointer"
-            >
-              <option value="1">1st Semester</option>
-              <option value="2">2nd Semester</option>
-            </select>
+            <div className="relative">
+              <select 
+                name="semester" onChange={handleChange}
+                className="w-full bg-[#0a0c10] border border-white/5 rounded-2xl p-4 focus:outline-none focus:border-emerald-500/50 text-white font-mono text-sm appearance-none transition-all cursor-pointer"
+              >
+                <option value="1">1st Semester</option>
+                <option value="2">2nd Semester</option>
+              </select>
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500 group-focus-within:text-emerald-500">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </div>
+            </div>
           </div>
 
-          {/* Upload Zone - Emerald Style */}
+          {/* Upload Zone */}
           <div className="border-2 border-dashed border-white/5 rounded-3xl p-8 text-center hover:border-emerald-500/40 hover:bg-emerald-500/[0.02] transition-all group/upload">
             <input 
               type="file" multiple id="file-upload" 
