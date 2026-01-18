@@ -33,7 +33,7 @@ const ExamCard = ({ exam }) => {
             <div key={file.id} className="flex items-center justify-between text-sm">
               <span className="text-gray-400 truncate w-32" title={file.name}>{file.name}</span>
               <a 
-                href={`https://filerepository.onrender.com/api/exam/download/${fileNameOnServer}`} 
+                href={`https://filerepository.onrender.com/api/exam/exam/download/${fileNameOnServer}`} 
                 download={file.name}
                 className="text-blue-500 hover:text-blue-400 font-medium flex items-center gap-1 shrink-0"
               >
