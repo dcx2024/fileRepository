@@ -29,19 +29,27 @@ const ExamCard = ({ exam }) => {
       {/* File List Section - FIXED HEIGHT WITH SCROLL */}
       {/* 'max-h-32 overflow-y-auto' prevents the card from growing too long */}
       <div className="flex-grow space-y-3 border-t border-gray-800 pt-4 mt-auto max-h-40 overflow-y-auto custom-scrollbar pr-2">
-        {exam.files.map((file) => {
-          const fileNameOnServer = file.path.split('\\').pop().split('/').pop();
-          return (
-            <div key={file.id} className="flex items-center justify-between text-sm">
-              <span className="text-gray-400 truncate w-32" title={file.name}>{file.name}</span>
-              <a 
-                href={`https://filerepository.onrender.com/api/exam/download/${fileNameOnServer}`} 
-                download={file.name}
-                className="text-blue-500 hover:text-blue-400 font-medium flex items-center gap-1 shrink-0"
-              >
-                <Download size={14} /> Download
-              </a>
-            </div>
+  {exam.files?.map((file) => { // Added the "?" here
+    const fileNameOnServer = file.path.split('\\').pop().split('/').pop();
+    return (
+      <div key={file.id} className="flex items-center justify-between text-sm">
+        <span className="text-gray-400 truncate w-32" title={file.name}>{file.name}</span>
+        <a 
+          href={`https://filerepository.onrender.com/api/exam/download/${fileNameOnServer}`} 
+          download={file.name}
+          className="text-blue-500 hover:text-blue-400 font-medium flex items-center gap-1 shrink-0"
+        >
+          <Download size={14} /> Download
+        </a>
+      </div>
+    );
+  })}
+  
+  {/* Optional: Show a message if no files are found */}
+  {(!exam.files || exam.files.length === 0) && (
+    <p className="text-gray-600 text-xs italic">No files available</p>
+  )}
+</div>
           );
         })}
       </div>
