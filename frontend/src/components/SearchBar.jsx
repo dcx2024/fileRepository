@@ -63,7 +63,7 @@ const SearchBar = ({ limit = null, showViewMore = false }) => {
           
           <input
             type="text"
-            placeholder="SYSTEM_QUERY: Search repository..."
+            placeholder="Search by course code, title, or academic year..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && loadExams(searchTerm)}
@@ -119,7 +119,7 @@ const SearchBar = ({ limit = null, showViewMore = false }) => {
               className="relative group px-12 py-5 rounded-2xl bg-[#0a0c10] border border-white/5 hover:border-emerald-500/50 transition-all duration-500 overflow-hidden"
             >
               <div className="relative z-10 flex items-center gap-4 text-xs font-black uppercase tracking-[0.3em] text-gray-400 group-hover:text-white transition-colors">
-                Explore All Assets
+                View More Documents
                 <ChevronDown size={18} className="group-hover:translate-y-1 transition-transform text-emerald-500" />
               </div>
               {/* Button Background Hover Effect */}
