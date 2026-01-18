@@ -15,7 +15,7 @@
               <div className="bg-blue-600 p-1.5 rounded-lg">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
               </div>
-              <h1 className="text-xl font-bold text-white tracking-tight">ScholarArch</h1>
+              <h1 className="text-xl font-bold text-white tracking-tight">FileRepo</h1>
             </div>
   
             {/* Center Links */}
