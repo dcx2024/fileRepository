@@ -50,7 +50,7 @@ const ExamCard = ({ exam }) => {
                 download={file.name}
                 className="text-[10px] font-black uppercase tracking-tighter text-emerald-500 hover:text-white flex items-center gap-1 shrink-0 transition-colors"
               >
-                GET <Download size={12} />
+                Download <Download size={12} />
               </a>
             </div>
           );
@@ -58,7 +58,7 @@ const ExamCard = ({ exam }) => {
         
         {(!exam.files || exam.files.length === 0) && (
           <div className="flex flex-col items-center justify-center py-4 opacity-40">
-            <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest">Database_Empty</p>
+            <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest">Not Found</p>
           </div>
         )}
       </div>
@@ -70,7 +70,7 @@ const ExamCard = ({ exam }) => {
           {exam.created_date ? new Date(exam.created_date).toLocaleDateString() : '00/00/00'}
         </span>
         <div className="bg-emerald-500/10 text-emerald-500 px-2 py-1 rounded-md border border-emerald-500/20">
-          {exam.files?.length || 0} OBJECTS
+          {exam.files?.length || 0} Files
         </div>
       </div>
     </div>
