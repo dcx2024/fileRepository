@@ -7,7 +7,8 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: process.env.CONN_URL/*{
+    connection: process.env.CONN_URL,
+    /*{
        host: process.env.HOST || 'localhost',
       user: process.env.DBUSER || 'postgres',
       password: process.env.DBPASSWORD || 'postgres',
@@ -36,6 +37,9 @@ module.exports = {
   production: {
     client: 'pg',
     connection: process.env.CONN_URL,
+    ssl: {
+       rejectUnauthorized: false // This is the "Magic Fix" for Render
+     },
     pool: {
       min: 2,
       max: 10
