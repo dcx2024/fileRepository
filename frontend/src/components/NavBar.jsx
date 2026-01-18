@@ -1,62 +1,91 @@
-  import React, { useState } from 'react';
-  import { Bell, User, Plus } from 'lucide-react';
-  import ContributeForm from './ContributeForm'; // Import your form
-  
-  const NavBar = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-  
-    return (
-      <>
-        <nav className="bg-[#0f1115] border-b border-gray-800 sticky top-0 z-50 w-full px-6 py-4">
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
+import React, { useState } from 'react';
+import { Bell, Plus, LayoutDashboard, Search, Menu } from 'lucide-react';
+import ContributeForm from './ContributeForm';
+
+const NavBar = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  return (
+    <>
+      <nav className="bg-[#0f1115]/80 backdrop-blur-md border-b border-white/5 sticky top-0 z-50 w-full px-6 py-3">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          
+          {/* NACOS-style Logo Section */}
+          <div 
+            className="flex items-center gap-3 group cursor-pointer" 
+            onClick={() => window.location.href = "/"}
+          >
+            <div className="bg-gradient-to-br from-cyan-500 to-blue-600 p-2 rounded-xl shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform duration-300">
+              <LayoutDashboard size={22} className="text-white" />
+            </div>
+            <div>
+              <h1 className="text-xl font-black text-white tracking-tighter uppercase leading-none">
+                NACOS<span className="text-cyan-400 font-light italic">ARCH</span>
+              </h1>
+              <p className="text-[10px] text-gray-500 font-bold tracking-[0.2em] leading-none mt-1">
+                KDU REPOSITORY
+              </p>
+            </div>
+          </div>
+
+          {/* Desktop Navigation Links */}
+          <div className="hidden md:flex items-center gap-10 text-xs font-black uppercase tracking-widest text-gray-400">
+            <a href="#/explore" className="hover:text-cyan-400 transition-colors flex items-center gap-2">
+              <Search size={14} /> Browse
+            </a>
             
-            {/* Logo Section */}
-            <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.location.reload()}>
-              <div className="bg-blue-600 p-1.5 rounded-lg">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-              </div>
-              <h1 className="text-xl font-bold text-white tracking-tight">FileRepo</h1>
-            </div>
-  
-            {/* Center Links */}
-            <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
-              <a href="#/explore" className="hover:text-white transition-colors">Browse</a>
-              {/* Trigger Button */}
-              <button 
-                onClick={() => setIsModalOpen(true)}
-                className="hover:text-white transition-colors flex items-center gap-1.5"
-              >
-                <Plus size={16} className="text-blue-500" />
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="relative px-5 py-2 overflow-hidden group rounded-full bg-white/5 border border-white/10 hover:border-cyan-500/50 transition-all"
+            >
+              <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors">
+                <Plus size={16} className="text-cyan-400" />
                 Contribute
-              </button>
-              <a href="#" className="hover:text-white transition-colors">FAQ</a>
-            </div>
-  
-            {/* Right Side Icons */}
-            <div className="flex items-center gap-6">
-              <button className="text-gray-400 hover:text-white relative">
-                <Bell size={20} />
-                <span className="absolute -top-1 -right-1 bg-red-500 w-2 h-2 rounded-full border-2 border-[#0f1115]"></span>
-              </button>
-              
-              <div className="flex items-center gap-3 border-l border-gray-800 pl-6">
-                <div className="w-8 h-8 rounded-full bg-orange-200 flex items-center justify-center overflow-hidden cursor-pointer ring-2 ring-transparent hover:ring-blue-500 transition-all">
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+            </button>
+
+            <a href="#" className="hover:text-cyan-400 transition-colors">FAQ</a>
+          </div>
+
+          {/* Right Side Actions */}
+          <div className="flex items-center gap-5">
+            <button className="text-gray-400 hover:text-cyan-400 transition-colors relative p-2 rounded-full hover:bg-white/5">
+              <Bell size={20} />
+              <span className="absolute top-2 right-2 bg-cyan-500 w-2 h-2 rounded-full shadow-[0_0_8px_rgba(34,211,238,0.8)]"></span>
+            </button>
+            
+            <div className="h-8 w-[1px] bg-gray-800 mx-2 hidden md:block"></div>
+            
+            <div className="flex items-center gap-3">
+              <div className="hidden md:block text-right">
+                <p className="text-[10px] text-white font-bold leading-none">NACOS MEMBER</p>
+                <p className="text-[9px] text-cyan-500 font-medium">Verified Account</p>
+              </div>
+              <div className="w-10 h-10 rounded-xl p-[1px] bg-gradient-to-tr from-cyan-500 to-blue-600">
+                <div className="w-full h-full rounded-xl bg-[#0f1115] overflow-hidden cursor-pointer hover:opacity-80 transition-opacity">
                     <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="avatar" />
                 </div>
               </div>
             </div>
+            
+            {/* Mobile Menu Icon */}
+            <button className="md:hidden text-gray-400 p-2">
+              <Menu size={24} />
+            </button>
           </div>
-        </nav>
-  
-        {/* Conditionally Render the Modal */}
-        {isModalOpen && (
-          <ContributeForm 
-            onClose={() => setIsModalOpen(false)} 
-            refreshExams={() => window.location.reload()} 
-          />
-        )}
-      </>
-    );
-  };
-  
-  export default NavBar;
+        </div>
+      </nav>
+
+      {/* Conditionally Render the Modal */}
+      {isModalOpen && (
+        <ContributeForm 
+          onClose={() => setIsModalOpen(false)} 
+          refreshExams={() => window.location.reload()} 
+        />
+      )}
+    </>
+  );
+};
+
+export default NavBar;
