@@ -35,7 +35,7 @@ const ContributeForm = ({ onClose, refreshExams }) => {
     });
 
     try {
-      const response = await fetch('http://localhost:3000/api/admin/upload', {
+      const response = await fetch('https://filerepository.onrender.com/api/admin/upload', {
         method: 'POST',
         body: data,
       });
