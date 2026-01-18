@@ -14,7 +14,7 @@ const Explore = () => {
     setLoading(true);
     try {
       // Fetching all exams without a limit
-      const res = await fetch(`http://localhost:3000/api/exam/fetchExams?search=${query}`);
+      const res = await fetch(`https://filerepository.onrender.com/api/exam/fetchExams?search=${query}`);
       const data = await res.json();
       setExams(data);
     } catch (error) {
