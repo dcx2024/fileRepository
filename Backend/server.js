@@ -5,7 +5,7 @@ const admin = require('./Routes/uploadRoute')
 const exam= require('./Routes/examRoute')
 app.use(express.json())
 app.use(cors({
-    origin:'http://localhost:5173'
+    origin:['http://localhost:5173','https://filerepository-1.onrender.com']
 }))
 app.use('/uploads', express.static('public/uploads'));
 app.use('/api/admin',admin)
