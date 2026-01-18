@@ -23,7 +23,7 @@ const SearchBar = ({ limit = null, showViewMore = false }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const loadExams = async (query = "") => {
+const loadExams = async (query = "") => {
     setLoading(true);
     try {
       let url = `https://filerepository.onrender.com/api/exam/fetchExams?search=${query}`;
@@ -31,9 +31,17 @@ const SearchBar = ({ limit = null, showViewMore = false }) => {
 
       const response = await fetch(url);
       const data = await response.json();
-      setExams(data);
+
+      // FIXED: Ensure exams is always an array
+      if (Array.isArray(data)) {
+        setExams(data);
+      } else {
+        console.error("Expected array but got:", data);
+        setExams([]); // Fallback to empty array
+      }
     } catch (error) {
       console.error("Error loading exams:", error);
+      setExams([]); // Fallback on network error
     } finally {
       setLoading(false);
     }
