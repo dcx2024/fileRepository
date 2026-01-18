@@ -4,7 +4,7 @@ const TABLE_POSTS = 'exam_posts';
 const TABLE_FILES = 'exam_files';
 
 
-const getAllExams = async (search = '') => {
+const getAllExams = async (search = '',limit=null) => {
  
   const exams = await db(TABLE_POSTS)
     .select(
