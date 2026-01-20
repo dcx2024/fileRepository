@@ -4,7 +4,7 @@ const TABLE_POSTS = 'exam_posts';
 const TABLE_FILES = 'exam_files';
 
 
-const getAllExams = async (search = '') => {
+const getAllExams = async (search = '',limit=null) => {
  
   const exams = await db(TABLE_POSTS)
     .select(
@@ -64,8 +64,14 @@ const getExamById= async(id)=>{
     .first()
 
   return exams;
+  
+}
+
+const deleteExam=async(id)=>{
+ await db(TABLE_FILES).where('post_id', id).del();
+  return db(TABLE_POSTS).where('id', id).del();
 }
 
 module.exports = {
-  getAllExams,getExamById
+  getAllExams,getExamById,deleteExam
 };

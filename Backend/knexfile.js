@@ -1,5 +1,5 @@
 // Update with your config settings.
-
+require('dotenv').config()
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
@@ -8,10 +8,10 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-       host: process.env.HOST || 'localhost',
-      user: process.env.DBUSER || 'postgres',
-      password: process.env.DBPASSWORD || 'postgres',
-      database: process.env.DBNAME || 'file_repo',
+       host: process.env.POSTGRES_HOST || 'localhost',
+      user: process.env.POSTGRES_USER || 'postgres',
+      password: process.env.POSTGRES_PASSWORD || 'postgres',
+      database: process.env.POSTGRES_DB || 'file_repo',
       port: process.env.DBPORT || 5432,
     }
   },

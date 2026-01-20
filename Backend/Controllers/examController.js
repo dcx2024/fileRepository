@@ -1,4 +1,4 @@
-const { getAllExams,getExamById } = require('../Models/examModel');
+const { getAllExams,getExamById,deleteExam } = require('../Models/examModel');
 const path=require("path")
 
 const fetchExams = async (req, res) => {
@@ -9,7 +9,8 @@ const fetchExams = async (req, res) => {
     const exams = await getAllExams(search, limit);
     res.json(exams);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch exams' });
+    console.error("FetchExams Error:", error);
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -35,6 +36,18 @@ const fetchById=async(req,res)=>{
   }
 }
 
+const deleteExamById=async(req,res)=>{
+  const {id} = req.params;
+
+  try{
+    await deleteExam(id);
+    res.status(200).json({message:"Upload has been successfully deleted"})
+  }catch(error){
+    res.status(500).json({error:"An error occurred"})
+    console.log("What happened", error)
+  }
+}
+
 module.exports = {
-  fetchExams,download,fetchById
+  fetchExams,download,fetchById,deleteExamById
 };
