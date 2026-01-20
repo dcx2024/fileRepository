@@ -46,7 +46,7 @@ const ExamCard = ({ exam }) => {
                 </span>
               </div>
               <a 
-                href={`http://localhost:3000/api/exam/exam/download/${fileNameOnServer}`} 
+                href={`http://localhost:3000/api/exam/download/${fileNameOnServer}`} 
                 download={file.name}
                 className="text-[10px] font-black uppercase tracking-tighter text-emerald-500 hover:text-white flex items-center gap-1 shrink-0 transition-colors"
               >
