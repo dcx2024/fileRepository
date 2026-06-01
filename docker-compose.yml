@@ -1,47 +1,51 @@
+version: '3.8'
+
 services:
-  db:
-    image: postgres:15
-    env_file: ./Backend/.env
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+  postgres-db:
+    image: postgres:15-alpine
+    container_name: pern_db_local
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: localpassword
+      POSTGRES_DB: perndb
     ports:
       - "5432:5432"
+    volumes:
+      - pgdata_local:/var/lib/postgresql/data
     networks:
-      - app-network
+      - local-network
 
-  backend:
-    image: file-backend
-    build: 
-      context: ./Backend
-      dockerfile: dockerfile
-    
-    depends_on:
-      - db
-    command: sh -c "npx wait-port db:5432 && npm run migrate && npm start"
-    expose:
-      - "5000"
+  backend-api:
+    build: ./backend
+    container_name: pern_backend_local
     ports:
       - "5000:5000"
-    networks:
-      - app-network
-
-  frontend:
-    image: file-frontend
-    build: 
-      context: ./frontend
-      dockerfile: dockerfile
-    expose:
-      - "80"
-    ports:
-      - "3000:80"
+    environment:
+      - POSTGRES_HOST=postgres-db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=localpassword
+      - POSTGRES_DB=perndb
+      - DBPORT=5432
+    volumes:
+      - exam_uploads:/app/public/uploads    
     depends_on:
-      - backend
+      - postgres-db
     networks:
-      - app-network
+      - local-network
+
+  frontend-app:
+    build: ./frontend
+    container_name: pern_frontend_local
+    ports:
+      - "8080:80" # Maps localhost:8080 on your machine to container port 80
+    depends_on:
+      - backend-api
+    networks:
+      - local-network
 
 volumes:
-  pgdata:
+  pgdata_local:
+  exam_uploads:
 
 networks:
-  app-network:
-    driver: bridge
+  local-network:

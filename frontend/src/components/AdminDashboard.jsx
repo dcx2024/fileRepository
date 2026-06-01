@@ -13,7 +13,7 @@ const AdminDashboard = () => {
   const fetchAdminData = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:3000/api/exam/fetchExams');
+      const res = await fetch('http://localhost:5000/api/exam/fetchExams');
       const data = await res.json();
       setExams(Array.isArray(data) ? data : []);
     } catch (error) {
@@ -28,7 +28,7 @@ const AdminDashboard = () => {
     
     setDeletingId(id);
     try {
-      const res = await fetch(`http://localhost:3000/api/admin/delete/${id}`, {
+      const res = await fetch(`http://localhost:5000/api/admin/delete/${id}`, {
         method: 'DELETE',
         credentials: 'include',
       });
