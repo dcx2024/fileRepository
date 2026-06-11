@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 
 const verifyToken = (req, res, next) => {
-    // Look for the cookie you set during login (usually named 'token')
     const token = req.cookies.token;
 
     if (!token) {
@@ -9,11 +8,12 @@ const verifyToken = (req, res, next) => {
     }
 
     try {
-        // Replace 'YOUR_JWT_SECRET' with your actual secret key
+        // Remove the fallback 'secret_key' so it forces usage of the environment variable
         const verified = jwt.verify(token, process.env.JWT_SECRET);
         req.user = verified;
-        next(); // Move to the next function (the status handler)
+        next(); 
     } catch (err) {
+        console.error("JWT Verification Error:", err.message); // Log the exact error to Render
         res.status(401).json({ message: "Invalid Token" });
     }
 };
