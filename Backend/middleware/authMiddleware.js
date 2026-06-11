@@ -10,7 +10,7 @@ const verifyToken = (req, res, next) => {
 
     try {
         // Replace 'YOUR_JWT_SECRET' with your actual secret key
-        const verified = jwt.verify(token, process.env.JWT_SECRET || 'secret_key');
+        const verified = jwt.verify(token, process.env.JWT_SECRET);
         req.user = verified;
         next(); // Move to the next function (the status handler)
     } catch (err) {
