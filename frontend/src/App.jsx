@@ -1,14 +1,16 @@
 import React from 'react';
-import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
+// 1. Swap out 'createBrowserRouter' for 'createHashRouter'
+import { Route, createHashRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import Explore from './pages/ExplorePage';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import AdminDashboard from './components/AdminDashboard';
-import ProtectedRoute from './components/ProtectedRoute'; // Import the wrapper
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
-  const router = createBrowserRouter(
+  // 2. Change the instantiation function here
+  const router = createHashRouter(
     createRoutesFromElements(
       <>
         {/* Public Routes */}
