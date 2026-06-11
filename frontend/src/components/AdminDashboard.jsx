@@ -28,7 +28,7 @@ const AdminDashboard = () => {
     
     setDeletingId(id);
     try {
-      const res = await fetch(`https://filerepository-backend.onrender.com/api/admin/delete/${id}`, {
+      const res = await fetch(`https://filerepository-backend.onrender.com/api/exam/delete/${id}`, {
         method: 'DELETE',
         credentials: 'include',
       });
