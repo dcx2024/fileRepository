@@ -7,7 +7,7 @@ const exam= require('./Routes/examRoute')
 const auth = require('./Routes/authRoute')
 app.use(express.json())
 app.use(cors({
-    origin:'http://localhost:8080',
+    origin:'http://localhost:8080','https://filerepository-frontend.onrender.com/',
     credentials:true
 }))
 
