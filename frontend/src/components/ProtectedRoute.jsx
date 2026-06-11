@@ -9,7 +9,7 @@ const ProtectedRoute = () => {
     const checkAuth = async () => {
       try {
         // You should have an endpoint like /api/auth/status that returns 200 if the cookie is valid
-        const response = await fetch('http://localhost:3000/api/auth/status', {
+        const response = await fetch('https://filerepository-backend.onrender.com/api/auth/status', {
           method: 'GET',
           credentials: 'include',
         });
