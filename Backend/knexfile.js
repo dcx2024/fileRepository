@@ -8,7 +8,7 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-       host: process.env.POSTGRES_HOST || 'localhost',
+      host: process.env.POSTGRES_HOST || 'localhost',
       user: process.env.POSTGRES_USER || 'postgres',
       password: process.env.POSTGRES_PASSWORD || 'postgres',
       database: process.env.POSTGRES_DB || 'file_repo',
@@ -20,7 +20,7 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'my_db',
-      user:     'username',
+      user: 'username',
       password: 'password'
     },
     pool: {
@@ -33,19 +33,13 @@ module.exports = {
   },
 
   production: {
-    client: 'postgresql',
+    client: 'pg',
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
+      connectionString: process.env.DATABASE_URL, // Render will pass this automatically
+      ssl: { rejectUnauthorized: false }        // Required for Render's cloud connection
     },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
+    pool: { min: 2, max: 10 },
+    migrations: { tableName: 'knex_migrations' }
   }
 
 };
