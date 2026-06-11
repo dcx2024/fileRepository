@@ -84,7 +84,7 @@ const ContributeForm = ({ onClose, refreshExams }) => {
         {/* Form Body */}
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="group">
-            <label className="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2 group-focus-within:text-emerald-500 transition-colors">Exam Title</label>
+            <label className="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2 group-focus-within:text-emerald-500 transition-colors">Document Title</label>
             <input 
               required name="title" onChange={handleChange}
               placeholder="e.g., MTH 101 Mid-term 2023"
@@ -156,7 +156,7 @@ const ContributeForm = ({ onClose, refreshExams }) => {
             type="submit" disabled={loading || files.length === 0}
             className="w-full bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 disabled:from-gray-800 disabled:to-gray-900 text-white font-black uppercase tracking-[0.2em] text-xs py-5 rounded-2xl transition-all shadow-xl shadow-emerald-500/10 active:scale-[0.98]"
           >
-            {loading ? "INITIALIZING UPLOAD..." : "Upload Exam"}
+            {loading ? "INITIALIZING UPLOAD..." : "Upload Document"}
           </button>
         </form>
       </div>
