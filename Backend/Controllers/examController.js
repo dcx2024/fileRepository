@@ -1,11 +1,11 @@
-const { getAllExams,getExamById,deleteExam } = require('../Models/examModel');
-const path=require("path")
+const { getAllExams, getExamById, deleteExam } = require('../Models/examModel');
+const { GetObjectCommand } = require('@aws-sdk/client-s3');
+const { s3Client } = require('../middleware/Upload'); // Update path to where you saved the file above
 
 const fetchExams = async (req, res) => {
-  const { search, limit } = req.query; // Capture limit from URL
+  const { search, limit } = req.query;
 
   try {
-    // If limit is passed (e.g., 20), it only gets the most recent
     const exams = await getAllExams(search, limit);
     res.json(exams);
   } catch (error) {
@@ -14,40 +14,60 @@ const fetchExams = async (req, res) => {
   }
 };
 
-const download=async(req,res)=>{
-  const {filename}= req.params;
-  const file_path=path.join(__dirname,'../public/uploads',filename)
-  res.download(file_path,filename,(err)=>{
-    if(err){
-      console.error("Download error:",err);
-      res.status(404).json({error:"File not found"})
+const download = async (req, res) => {
+  const { filename } = req.params;
+
+  try {
+    const command = new GetObjectCommand({
+      Bucket: process.env.AWS_S3_BUCKET_NAME,
+      Key: filename,
+    });
+
+    // Fetch the file from S3
+    const s3Item = await s3Client.send(command);
+
+    // Set headers to trigger a file download in the browser
+    res.setHeader('Content-Type', s3Item.ContentType || 'application/octet-stream');
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+
+    // Pipe the S3 read stream directly to the response
+    s3Item.Body.pipe(res);
+
+  } catch (error) {
+    console.error("Download error:", error);
+    if (error.name === 'NoSuchKey') {
+      return res.status(404).json({ error: "File not found" });
     }
-  })
-}
-
-const fetchById=async(req,res)=>{
-  const {id}=req.params;
-  try{
-    const exam=await getExamById(id);
-    if(!exam) return res.status(404).json({error:"Exam not found"})
-      res.json(exam)
-  }catch(error){
-    res.status(500).json({error:"Server Error"})
+    res.status(500).json({ error: "Failed to download file" });
   }
-}
+};
 
-const deleteExamById=async(req,res)=>{
-  const {id} = req.params;
+const fetchById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const exam = await getExamById(id);
+    if (!exam) return res.status(404).json({ error: "Exam not found" });
+    res.json(exam);
+  } catch (error) {
+    res.status(500).json({ error: "Server Error" });
+  }
+};
 
-  try{
+const deleteExamById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
     await deleteExam(id);
-    res.status(200).json({message:"Upload has been successfully deleted"})
-  }catch(error){
-    res.status(500).json({error:"An error occurred"})
-    console.log("What happened", error)
+    res.status(200).json({ message: "Upload has been successfully deleted" });
+  } catch (error) {
+    console.log("What happened", error);
+    res.status(500).json({ error: "An error occurred" });
   }
-}
+};
 
 module.exports = {
-  fetchExams,download,fetchById,deleteExamById
+  fetchExams,
+  download,
+  fetchById,
+  deleteExamById
 };
